@@ -1,0 +1,118 @@
+---
+title: Shop backpacks and bags — Woobee
+description: Shop Woobee backpacks, shoulder bags, hip packs and accessories. Filter by colour and size, and find a bag for the commute and the trail.
+nav: shop
+film: true
+newsletter: true
+ogImage: assets/og/shop.jpg
+ogImageAlt: Hiker resting beside a copper Woobee backpack above a lake at sunset
+---
+    <!-- ============ SHOP HERO ============ -->
+    <section class="page-hero page-hero--shop" aria-labelledby="page-title">
+      <div class="page-hero__media">
+        <img data-sizes="(min-width: 768px) 52vw, 100vw" src="assets/promo-summit.jpg" alt="Hiker resting beside a copper Woobee backpack on a rocky summit, looking over a lake and snow-capped peaks at sunset" width="1536" height="1024" fetchpriority="high">
+      </div>
+      <div class="wrap page-hero__inner">
+        <div class="page-hero__copy">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <ol><li><a href="index.html">Home</a></li><li><span aria-current="page">Shop</span></li></ol>
+          </nav>
+          <p class="eyebrow">Built for your next journey</p>
+          <h1 class="page-hero__title" id="page-title">One bag for<br>every kind of week.</h1>
+          <p class="page-hero__lede">Thoughtfully designed backpacks and bags with easy organisation and all-day comfort, from a 2 L pouch to a 45 L weekender.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="shop.html?category=backpacks" data-filter-link="backpacks">Shop backpacks <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <button class="play" type="button" data-film-open>
+              <span class="play__ring" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+              Watch the film
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- include: values -->
+
+    <!-- ============ LISTING ============ -->
+    <section class="shop shop--page" id="listing" aria-labelledby="shop-title" data-shop>
+      <div class="wrap">
+        <div class="shop__head">
+          <p class="eyebrow reveal">Shop</p>
+          <h2 class="shop__title reveal" id="shop-title">Find your perfect backpack</h2>
+          <p class="shop__lede reveal">From the daily commute to the weekend trail, filter by colour and size to find the bag that fits how you move.</p>
+        </div>
+
+        <div class="shop__bar">
+          <div class="filters" role="group" aria-label="Filter by category">
+              <!-- include: category-filters -->
+          </div>
+          <div class="shop__tools">
+            <button class="refine-toggle" type="button" aria-expanded="false" aria-controls="refine">
+              <svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg>
+              Refine <span class="refine-toggle__count" data-refine-count hidden>0</span>
+            </button>
+            <div class="sort">
+              <label class="sort__label" for="sort">Sort by</label>
+              <div class="sort__field">
+                <select id="sort" name="sort">
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: low to high</option>
+                  <option value="price-desc">Price: high to low</option>
+                  <option value="capacity-desc">Capacity: largest first</option>
+                </select>
+                <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="refine" id="refine">
+          <div class="refine__group" role="group" aria-labelledby="refine-colour">
+            <span class="refine__label" id="refine-colour">Colour</span>
+            <div class="refine__chips">
+                <button class="chip" type="button" data-colour="copper" aria-pressed="false"><span class="chip__swatch" style="--c:#C0632F" aria-hidden="true"></span>Copper</button>
+                <button class="chip" type="button" data-colour="black" aria-pressed="false"><span class="chip__swatch" style="--c:#1E1F21" aria-hidden="true"></span>Black</button>
+                <button class="chip" type="button" data-colour="stone" aria-pressed="false"><span class="chip__swatch" style="--c:#8E8A84" aria-hidden="true"></span>Stone</button>
+                <button class="chip" type="button" data-colour="moss" aria-pressed="false"><span class="chip__swatch" style="--c:#4F5B3A" aria-hidden="true"></span>Moss</button>
+            </div>
+          </div>
+          <div class="refine__group" role="group" aria-labelledby="refine-size">
+            <span class="refine__label" id="refine-size">Size</span>
+            <div class="refine__chips">
+                <button class="chip" type="button" data-size="small" aria-pressed="false">Small <span class="chip__hint">under 10 L</span></button>
+                <button class="chip" type="button" data-size="medium" aria-pressed="false">Medium <span class="chip__hint">10–25 L</span></button>
+                <button class="chip" type="button" data-size="large" aria-pressed="false">Large <span class="chip__hint">25 L+</span></button>
+            </div>
+          </div>
+          <button class="text-link refine__clear" type="button" data-clear-filters hidden>Clear all filters</button>
+        </div>
+
+        <p class="shop__status" id="shop-status" aria-live="polite">Showing all 8 products</p>
+
+        <ul class="grid" id="product-grid" aria-describedby="shop-status">
+            <!-- include: product-tiles -->
+        </ul>
+
+        <div class="empty" data-empty hidden>
+          <h3 class="empty__title">Nothing matches that combination yet.</h3>
+          <p class="empty__text">Try another search, colour or size, or clear the filters to see all eight bags.</p>
+          <button class="btn btn--secondary" type="button" data-clear-filters>Clear filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROMO BANNER ============ -->
+    <section class="promo" aria-labelledby="promo-title">
+      <div class="wrap">
+        <div class="promo__inner">
+          <div class="promo__copy reveal">
+            <h2 class="promo__title" id="promo-title">Gear up for what's next.</h2>
+            <p class="promo__text">Quality, comfort and style in one place, ready for the next ridge or the next commute.</p>
+            <a class="btn btn--promo" href="index.html#gallery-title">See where Woobee goes <svg class="btn__arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="promo__media promo__media--falls">
+            <img data-sizes="(min-width: 1024px) 55vw, 100vw" src="assets/gallery-falls.jpg" alt="Hiker in a copper jacket and Woobee backpack looking up at a misty waterfall at sunrise" width="1254" height="1254" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>

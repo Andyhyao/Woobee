@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Journal — Woobee</title>
+  <meta name="description" content="Trail guides, gear tips and field notes from Woobee, for people who commute on Monday and climb on Saturday.">
+  <meta name="theme-color" content="#F6F3EE">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Woobee">
+  <meta property="og:title" content="Journal — Woobee">
+  <meta property="og:description" content="Trail guides, gear tips and field notes from Woobee, for people who commute on Monday and climb on Saturday.">
+  <meta property="og:image" content="assets/og/journal.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hiker with a Woobee backpack looking up at a misty waterfall">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=9c155ea6">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+  <!-- SVG sprite: one icon family, 24px, 1.5px stroke, square caps -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="mark-woobee" viewBox="0 0 366 190"><path fill="currentColor" d="M308.444 190H109.444L210.772 68L308.444 190ZM140.437 175.995H277.452L210.203 91.9951L140.437 175.995Z"/><path fill="currentColor" d="M239.889 189.5H0L119.944 41L239.889 189.5ZM30.4443 176H210.444L120.902 66L30.4443 176Z"/><path fill="currentColor" d="M109.476 190H60.4854L60.8896 189.5H109.891L109.476 190ZM365.799 190H308.476L299.241 178.466H337.851L213.143 24.0684L159.721 90.207L150.404 78.6729L213.143 1L365.799 190Z"/><path fill="currentColor" d="M119.5 107L148.5 143L138.5 155.5L119.5 132.5L83.6156 176H64L119.5 107Z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20.5 20.5"/></symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24"><path d="M4.5 7.5h15l-1 13h-13z"/><path d="M8.5 9.5V6a3.5 3.5 0 0 1 7 0v3.5"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M5.5 5.5l13 13M18.5 5.5l-13 13"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M9 6.5v11l9-5.5z" fill="currentColor"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z" pathLength="1"/><path d="M3.5 7 12 11.5 20.5 7M12 11.5v10" pathLength="1"/></symbol>
+      <symbol id="i-feather" viewBox="0 0 24 24"><path d="M19.5 4.5c-6 0-12 4-13 11.5l-2 4M6.5 16c5 0 10-3 13-11.5" pathLength="1"/><path d="M9 12.5h6" pathLength="1"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 19.5 5.5V11c0 5-3.2 8.6-7.5 10.5C7.7 19.6 4.5 16 4.5 11V5.5z" pathLength="1"/><path d="M8.5 11.5 11 14l4.5-4.5" pathLength="1"/></symbol>
+      <symbol id="i-peaks" viewBox="0 0 24 24"><path d="M2.5 19.5 9 8.5l4 6.5 2.5-3.5 6 8z" pathLength="1"/></symbol>
+      <symbol id="i-laptop" viewBox="0 0 24 24"><path d="M4.5 5.5h15v11h-15z"/><path d="M2 19.5h20"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13.5 2.5 5 13.5h6.5l-1 8 8.5-11h-6.5z" pathLength="1"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 10V4h6M4 4l6 6M20 14v6h-6M20 20l-6-6"/></symbol>
+      <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 2.5h4v3l1.5 2.5v13.5h-7V8L10 5.5z"/><path d="M8.5 12h7"/></symbol>
+      <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17L12 16.5l-5.5 4z"/></symbol>
+      <symbol id="i-bag-plus" viewBox="0 0 24 24"><path d="M4.5 7.5h15l-1 13h-13z"/><path d="M8.5 9.5V6a3.5 3.5 0 0 1 7 0v3.5M12 12.5v5M9.5 15h5"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6.5 9.5 12 15l5.5-5.5"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5"/><path d="M10.5 9.5v5l4-2.5z" fill="currentColor"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M4.5 4.5 19.5 19.5M19.5 4.5 4.5 19.5"/></symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19.5C5 11 10 5 20 4.5c.5 9-5 15-12.5 15H5z" pathLength="1"/><path d="M5 19.5 13 11.5" pathLength="1"/></symbol>
+      <symbol id="i-people" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3" pathLength="1"/><circle cx="16.5" cy="9" r="2.5" pathLength="1"/><path d="M3 19.5c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5M14.5 14.2c.6-.2 1.3-.2 2-.2 2.6 0 4.5 1.9 4.5 4.8" pathLength="1"/></symbol>
+      <symbol id="i-search-sm" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15 19.5 19.5"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Navigation: 72px solid bone bar, never transparent over photography -->
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="logo wordmark" href="index.html" aria-label="Woobee home">
+        <svg class="wordmark__mark" aria-hidden="true" focusable="false"><use href="#mark-woobee"/></svg>
+        <span class="wordmark__text">Woobee</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="journal.html" aria-current="page">Journal</a>
+      </nav>
+      <div class="nav__tools">
+        <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="site-search" data-search-toggle><svg class="icon"><use href="#i-search"/></svg></button>
+        <a class="icon-btn cart" href="/cart" aria-label="Cart, 0 items">
+          <svg class="icon"><use href="#i-bag"/></svg>
+          <span class="cart__badge" data-count="0">0</span>
+        </a>
+        <button class="icon-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+          <svg class="icon icon--open"><use href="#i-menu"/></svg>
+          <svg class="icon icon--close"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="menu" id="menu" hidden>
+      <div class="wrap menu__inner">
+        <nav class="menu__primary" aria-label="Primary mobile">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">About</a>
+          <a href="journal.html" aria-current="page">Journal</a>
+        </nav>
+        <ul class="menu__secondary">
+          <li><a href="/account">Account</a></li>
+          <li><a href="/stores">Store locator</a></li>
+          <li><a href="/help">Shipping and returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-search" id="site-search" hidden>
+      <form class="wrap site-search__inner" action="shop.html" method="get" role="search">
+        <label class="sr-only" for="site-search-input">Search products</label>
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input class="site-search__input" id="site-search-input" name="q" type="search" placeholder="Search backpacks, bags and accessories" autocomplete="off" enterkeyhint="search">
+        <button class="btn btn--primary" type="submit">Search</button>
+      </form>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ JOURNAL HERO ============ -->
+    <section class="page-hero page-hero--journal" aria-labelledby="page-title">
+      <div class="page-hero__media">
+        <img src="assets/gallery-falls.jpg" srcset="assets/r/gallery-falls-480.jpg 480w, assets/r/gallery-falls-800.jpg 800w, assets/gallery-falls.jpg 1254w" sizes="(min-width: 768px) 52vw, 100vw" alt="Hiker in a copper jacket and Woobee backpack looking up at a misty waterfall beside her tent" width="1254" height="1254" fetchpriority="high">
+      </div>
+      <div class="wrap page-hero__inner">
+        <div class="page-hero__copy">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <ol><li><a href="index.html">Home</a></li><li><span aria-current="page">Journal</span></li></ol>
+          </nav>
+          <p class="eyebrow">Journal</p>
+          <h1 class="page-hero__title" id="page-title">Stories for your next journey.</h1>
+          <p class="page-hero__lede">Trail guides, gear tips and field notes from people who commute on Monday and climb on Saturday.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STORIES ============ -->
+    <section class="journal" id="stories" aria-labelledby="stories-title" data-journal>
+      <div class="wrap">
+        <h2 class="sr-only" id="stories-title">All stories</h2>
+        <div class="journal__bar">
+          <div class="filters" role="group" aria-label="Filter by topic">
+            <button class="filter" type="button" data-topic="all" aria-pressed="true">All <span class="filter__count">7</span></button>
+            <button class="filter" type="button" data-topic="travel" aria-pressed="false">Travel <span class="filter__count">2</span></button>
+            <button class="filter" type="button" data-topic="gear-guides" aria-pressed="false">Gear guides <span class="filter__count">2</span></button>
+            <button class="filter" type="button" data-topic="lifestyle" aria-pressed="false">Lifestyle <span class="filter__count">2</span></button>
+            <button class="filter" type="button" data-topic="inspiration" aria-pressed="false">Inspiration <span class="filter__count">1</span></button>
+          </div>
+          <div class="journal__search">
+            <label class="sr-only" for="journal-search">Search stories</label>
+            <svg class="icon" aria-hidden="true"><use href="#i-search-sm"/></svg>
+            <input id="journal-search" type="search" placeholder="Search stories" autocomplete="off" aria-describedby="journal-status">
+          </div>
+        </div>
+        <p class="shop__status" id="journal-status" aria-live="polite">Showing all 7 stories</p>
+
+          <article class="post post--featured" data-topic="travel" data-order="0">
+            <div class="post__media">
+              <img src="assets/promo-summit.jpg" srcset="assets/r/promo-summit-480.jpg 480w, assets/r/promo-summit-800.jpg 800w, assets/r/promo-summit-1200.jpg 1200w, assets/promo-summit.jpg 1536w" sizes="(min-width: 1024px) 56vw, 100vw" alt="Hiker resting beside a copper Woobee backpack above a lake and mountain ranges at sunset" width="1536" height="1024" loading="lazy">
+              <span class="badge">Featured</span>
+            </div>
+            <div class="post__body">
+              <p class="post__meta"><span>Travel</span><span><time datetime="2026-10-30">30 Oct 2026</time></span><span>8 min read</span></p>
+              <h2 class="post__title"><a href="/journal/five-trails-worth-the-early-alarm">Five Southeast Asian trails worth the early alarm</a></h2>
+              <p class="post__excerpt">From the mossy forests of Cameron Highlands to the summit path on Kinabalu, five hikes that pay you back for leaving before sunrise.</p>
+              <span class="text-link post__more" aria-hidden="true">Read more <svg class="btn__arrow"><use href="#i-arrow"/></svg></span>
+            </div>
+          </article>
+
+        <div class="posts">
+          <article class="post" data-topic="gear-guides" data-order="1">
+            <div class="post__media">
+              <img src="assets/features-open-bag.jpg" srcset="assets/r/features-open-bag-480.jpg 480w, assets/r/features-open-bag-800.jpg 800w, assets/features-open-bag.jpg 970w" sizes="(min-width: 1024px) 31vw, (min-width: 768px) 48vw, 100vw" alt="Woobee backpack unzipped to show a laptop sleeve, organiser pockets and a water bottle" width="970" height="941" loading="lazy">
+            </div>
+            <div class="post__body">
+              <p class="post__meta"><span>Gear guides</span><span><time datetime="2026-10-24">24 Oct 2026</time></span><span>5 min read</span></p>
+              <h3 class="post__title"><a href="/journal/pack-light-for-a-weekend">How to pack light for a weekend away</a></h3>
+              <p class="post__excerpt">One bag, three days, nothing you didn't use. A simple system for packing less without going without.</p>
+              <span class="text-link post__more" aria-hidden="true">Read more <svg class="btn__arrow"><use href="#i-arrow"/></svg></span>
+            </div>
+          </article>
+          <article class="post" data-topic="lifestyle" data-order="2">
+            <div class="post__media">
+              <img src="assets/journal/trail-clears-head.jpg" alt="Hiker with a copper backpack looking out over hazy ridges" width="465" height="310" loading="lazy">
+            </div>
+            <div class="post__body">
+              <p class="post__meta"><span>Lifestyle</span><span><time datetime="2026-10-17">17 Oct 2026</time></span><span>4 min read</span></p>
+              <h3 class="post__title"><a href="/journal/why-the-trail-clears-your-head">Why the trail clears your head</a></h3>
+              <p class="post__excerpt">Notes on walking slowly, looking up, and the quiet that follows a long climb.</p>
+              <span class="text-link post__more" aria-hidden="true">Read more <svg class="btn__arrow"><use href="#i-arrow"/></svg></span>
+            </div>
+          </article>
+          <article class="post" data-topic="gear-guides" data-order="3">
+            <div class="post__media">
+              <img src="assets/detail-weather-fabric.jpg" srcset="assets/r/detail-weather-fabric-480.jpg 480w, assets/r/detail-weather-fabric-800.jpg 800w, assets/detail-weather-fabric.jpg 1056w" sizes="(min-width: 1024px) 31vw, (min-width: 768px) 48vw, 100vw" alt="Water beading on copper canvas beside a zip" width="1056" height="704" loading="lazy">
+            </div>
+            <div class="post__body">
+              <p class="post__meta"><span>Gear guides</span><span><time datetime="2026-10-09">9 Oct 2026</time></span><span>3 min read</span></p>
+              <h3 class="post__title"><a href="/journal/backpack-care-101">Backpack care 101</a></h3>
+              <p class="post__excerpt">Keep canvas, zips and webbing in good shape for years with ten minutes of care each season.</p>
+              <span class="text-link post__more" aria-hidden="true">Read more <svg class="btn__arrow"><use href="#i-arrow"/></svg></span>
+            </div>
+          </article>
+          <article class="post" data-topic="inspiration" data-order="4">
+            <div class="post__media">
+              <img src="assets/gallery-ridge.jpg" srcset="assets/r/gallery-ridge-480.jpg 480w, assets/r/gallery-ridge-800.jpg 800w, assets/gallery-ridge.jpg 1122w" sizes="(min-width: 1024px) 31vw, (min-width: 768px) 48vw, 100vw" alt="Six friends laughing as they hike a rocky ridge trail at golden hour" width="1122" height="1402" loading="lazy">
+            </div>
+            <div class="post__body">
+              <p class="post__meta"><span>Inspiration</span><span><time datetime="2026-10-02">2 Oct 2026</time></span><span>6 min read</span></p>
+              <h3 class="post__title"><a href="/journal/real-people-real-journeys">Real people, real journeys</a></h3>
+              <p class="post__excerpt">Six friends, one ridge, and the stories that came home with them.</p>
+              <span class="text-link post__more" aria-hidden="true">Read more <svg class="btn__arrow"><use href="#i-arrow"/></svg></span>
+            </div>
+          </article>
+          <article class="post" data-topic="lifestyle" data-order="5">
+            <div class="post__media">
+              <img src="assets/hero-ridge.jpg" srcset="assets/r/hero-ridge-480.jpg 480w, assets/r/hero-ridge-800.jpg 800w, assets/r/hero-ridge-1200.jpg 1200w, assets/hero-ridge.jpg 1672w" sizes="(min-width: 1024px) 31vw, (min-width: 768px) 48vw, 100vw" alt="Copper Woobee backpack standing on a granite outcrop above mountain ridges" width="1672" height="941" loading="lazy">
+            </div>
+            <div class="post__body">
+              <p class="post__meta"><span>Lifestyle</span><span><time datetime="2026-09-25">25 Sep 2026</time></span><span>5 min read</span></p>
+              <h3 class="post__title"><a href="/journal/whats-in-my-bag">What's in my bag: a day on the trail</a></h3>
+              <p class="post__excerpt">A look inside the essentials we pack for a full day out, and the pocket each one lives in.</p>
+              <span class="text-link post__more" aria-hidden="true">Read more <svg class="btn__arrow"><use href="#i-arrow"/></svg></span>
+            </div>
+          </article>
+          <article class="post" data-topic="travel" data-order="6">
+            <div class="post__media">
+              <img src="assets/journal/weekend-escapes.jpg" alt="Woobee bag slipped over the handle of a black rolling suitcase" width="467" height="334" loading="lazy">
+            </div>
+            <div class="post__body">
+              <p class="post__meta"><span>Travel</span><span><time datetime="2026-09-18">18 Sep 2026</time></span><span>4 min read</span></p>
+              <h3 class="post__title"><a href="/journal/weekend-escapes-near-the-city">Weekend escapes near the city</a></h3>
+              <p class="post__excerpt">Short trips, big views. Getaways you can reach on a Friday evening and be back from by Sunday.</p>
+              <span class="text-link post__more" aria-hidden="true">Read more <svg class="btn__arrow"><use href="#i-arrow"/></svg></span>
+            </div>
+          </article>
+        </div>
+
+        <div class="empty" data-journal-empty hidden>
+          <h3 class="empty__title">No stories match that yet.</h3>
+          <p class="empty__text">Try a different word or topic, or clear the search to see every story.</p>
+          <button class="btn btn--secondary" type="button" data-journal-clear>Show all stories</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER BAND ============ -->
+    <section class="loop" aria-labelledby="newsletter-title">
+      <div class="wrap loop__inner">
+        <div class="loop__copy reveal">
+          <h2 class="loop__title" id="newsletter-title">Stay in the loop</h2>
+          <p class="loop__text">New stories, gear guides and trail notes, straight to your inbox.</p>
+        </div>
+        <form class="newsletter newsletter--light reveal" novalidate aria-labelledby="newsletter-title">
+          <label class="newsletter__label" for="newsletter-email">Email address</label>
+          <div class="newsletter__row">
+            <input class="newsletter__input" id="newsletter-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="newsletter-msg" required>
+            <button class="btn btn--primary" type="submit">Subscribe</button>
+          </div>
+          <p class="newsletter__msg" id="newsletter-msg" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top footer__top--compact">
+        <div class="footer__brand">
+          <a class="wordmark footer__logo" href="index.html" aria-label="Woobee home">
+            <svg class="wordmark__mark" aria-hidden="true" focusable="false"><use href="#mark-woobee"/></svg>
+            <span class="wordmark__text">Woobee</span>
+          </a>
+          <p class="footer__tagline">Carry What Matters.</p>
+          <p class="footer__about">Backpacks and travel carry for city weekdays and trail weekends.</p>
+          <ul class="social" aria-label="Woobee on social media">
+            <li><a class="social__link" href="https://instagram.com/" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+            <li><a class="social__link" href="https://youtube.com/" aria-label="YouTube"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a></li>
+            <li><a class="social__link" href="https://x.com/" aria-label="X"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></a></li>
+          </ul>
+        </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+          <div class="footer__col">
+            <h2 class="footer__heading">Shop</h2>
+            <ul>
+              <li><a href="shop.html?category=backpacks" data-filter-link="backpacks">Backpacks</a></li>
+              <li><a href="shop.html?category=shoulder-bags" data-filter-link="shoulder-bags">Shoulder bags</a></li>
+              <li><a href="shop.html?category=hip-packs" data-filter-link="hip-packs">Hip packs</a></li>
+              <li><a href="shop.html?category=accessories" data-filter-link="accessories">Accessories</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h2 class="footer__heading">Help</h2>
+            <ul>
+              <li><a href="/help/shipping">Shipping</a></li>
+              <li><a href="/help/returns">Returns</a></li>
+              <li><a href="/help/faqs">FAQs</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h2 class="footer__heading">Woobee</h2>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="journal.html">Journal</a></li>
+              <li><a href="/stores">Store locator</a></li>
+              <li><a href="/warranty">Warranty</a></li>
+            </ul>
+          </div>
+        </nav>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <span data-year>2026</span> Woobee. All rights reserved.</p>
+        <ul class="footer__legal">
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/terms">Terms</a></li>
+          <li><span class="mono">Prices in USD</span></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js?v=7dcd0c81" defer></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+[
+  {
+    "slug": "trailpro-45l",
+    "name": "TrailPro 45L",
+    "type": "Adventure backpack",
+    "category": "backpacks",
+    "price": 99,
+    "capacity": 45,
+    "badge": "New",
+    "colours": [
+      "copper",
+      "black",
+      "moss"
+    ],
+    "alt": "TrailPro 45L adventure backpack in copper canvas"
+  },
+  {
+    "slug": "urban-25l",
+    "name": "Urban 25L",
+    "type": "Daily backpack",
+    "category": "backpacks",
+    "price": 89,
+    "capacity": 25,
+    "badge": "Best seller",
+    "colours": [
+      "black",
+      "stone",
+      "moss"
+    ],
+    "alt": "Urban 25L daily backpack in black"
+  },
+  {
+    "slug": "explore-30l",
+    "name": "Explore 30L",
+    "type": "Travel backpack",
+    "category": "backpacks",
+    "price": 119,
+    "capacity": 30,
+    "badge": null,
+    "colours": [
+      "copper",
+      "moss"
+    ],
+    "alt": "Explore 30L roll-top travel backpack in copper with leather straps"
+  },
+  {
+    "slug": "pouch-2l",
+    "name": "Pouch 2L",
+    "type": "Utility pouch",
+    "category": "hip-packs",
+    "price": 29,
+    "capacity": 2,
+    "badge": null,
+    "colours": [
+      "copper",
+      "moss",
+      "black"
+    ],
+    "alt": "Pouch 2L utility pouch in copper"
+  },
+  {
+    "slug": "daypack-18l",
+    "name": "Daypack 18L",
+    "type": "Compact backpack",
+    "category": "backpacks",
+    "price": 79,
+    "capacity": 18,
+    "badge": null,
+    "colours": [
+      "black",
+      "copper",
+      "stone"
+    ],
+    "alt": "Daypack 18L compact backpack in black"
+  },
+  {
+    "slug": "crossbody-3l",
+    "name": "Crossbody 3L",
+    "type": "Shoulder bag",
+    "category": "shoulder-bags",
+    "price": 49,
+    "capacity": 3,
+    "badge": null,
+    "colours": [
+      "copper",
+      "black",
+      "stone"
+    ],
+    "alt": "Crossbody 3L shoulder bag in copper"
+  },
+  {
+    "slug": "hip-pack-3l",
+    "name": "Hip Pack 3L",
+    "type": "Waist pack",
+    "category": "hip-packs",
+    "price": 39,
+    "capacity": 3,
+    "badge": null,
+    "colours": [
+      "copper",
+      "black",
+      "stone"
+    ],
+    "alt": "Hip Pack 3L waist pack in copper"
+  },
+  {
+    "slug": "water-bottle",
+    "name": "Trail Bottle 750 ml",
+    "type": "Insulated bottle",
+    "category": "accessories",
+    "price": 19,
+    "capacity": 0.75,
+    "badge": null,
+    "colours": [
+      "black",
+      "copper",
+      "stone"
+    ],
+    "alt": "Trail Bottle insulated water bottle in matte black"
+  }
+]

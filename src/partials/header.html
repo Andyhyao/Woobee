@@ -1,0 +1,48 @@
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="logo wordmark" href="index.html" aria-label="Woobee home">
+      <svg class="wordmark__mark" aria-hidden="true" focusable="false"><use href="#mark-woobee"/></svg>
+      <span class="wordmark__text">Woobee</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html"{{current.home}}>Home</a>
+      <a href="shop.html"{{current.shop}}>Shop</a>
+      <a href="about.html"{{current.about}}>About</a>
+      <a href="journal.html"{{current.journal}}>Journal</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="site-search" data-search-toggle><svg class="icon"><use href="#i-search"/></svg></button>
+      <a class="icon-btn cart" href="/cart" aria-label="Cart, 0 items">
+        <svg class="icon"><use href="#i-bag"/></svg>
+        <span class="cart__badge" data-count="0">0</span>
+      </a>
+      <button class="icon-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+        <svg class="icon icon--open"><use href="#i-menu"/></svg>
+        <svg class="icon icon--close"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <div class="wrap menu__inner">
+      <nav class="menu__primary" aria-label="Primary mobile">
+        <a href="index.html"{{current.home}}>Home</a>
+        <a href="shop.html"{{current.shop}}>Shop</a>
+        <a href="about.html"{{current.about}}>About</a>
+        <a href="journal.html"{{current.journal}}>Journal</a>
+      </nav>
+      <ul class="menu__secondary">
+        <li><a href="/account">Account</a></li>
+        <li><a href="/stores">Store locator</a></li>
+        <li><a href="/help">Shipping and returns</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="site-search" id="site-search" hidden>
+    <form class="wrap site-search__inner" action="shop.html" method="get" role="search">
+      <label class="sr-only" for="site-search-input">Search products</label>
+      <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+      <input class="site-search__input" id="site-search-input" name="q" type="search" placeholder="Search backpacks, bags and accessories" autocomplete="off" enterkeyhint="search">
+      <button class="btn btn--primary" type="submit">Search</button>
+    </form>
+  </div>
+</header>

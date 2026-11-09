@@ -1,0 +1,133 @@
+{
+  "assets/about-patch.jpg": {
+    "width": 466,
+    "variants": {}
+  },
+  "assets/about-zip.jpg": {
+    "width": 471,
+    "variants": {}
+  },
+  "assets/banner-hiker.jpg": {
+    "width": 2000,
+    "variants": {
+      "480": "assets/r/banner-hiker-480.jpg",
+      "800": "assets/r/banner-hiker-800.jpg",
+      "1200": "assets/r/banner-hiker-1200.jpg",
+      "1600": "assets/r/banner-hiker-1600.jpg"
+    }
+  },
+  "assets/detail-back-panel.jpg": {
+    "width": 1044,
+    "variants": {
+      "480": "assets/r/detail-back-panel-480.jpg",
+      "800": "assets/r/detail-back-panel-800.jpg"
+    }
+  },
+  "assets/detail-shoulder-strap.jpg": {
+    "width": 1038,
+    "variants": {
+      "480": "assets/r/detail-shoulder-strap-480.jpg",
+      "800": "assets/r/detail-shoulder-strap-800.jpg"
+    }
+  },
+  "assets/detail-weather-fabric.jpg": {
+    "width": 1056,
+    "variants": {
+      "480": "assets/r/detail-weather-fabric-480.jpg",
+      "800": "assets/r/detail-weather-fabric-800.jpg"
+    }
+  },
+  "assets/features-open-bag.jpg": {
+    "width": 970,
+    "variants": {
+      "480": "assets/r/features-open-bag-480.jpg",
+      "800": "assets/r/features-open-bag-800.jpg"
+    }
+  },
+  "assets/gallery-falls.jpg": {
+    "width": 1254,
+    "variants": {
+      "480": "assets/r/gallery-falls-480.jpg",
+      "800": "assets/r/gallery-falls-800.jpg"
+    }
+  },
+  "assets/gallery-ridge.jpg": {
+    "width": 1122,
+    "variants": {
+      "480": "assets/r/gallery-ridge-480.jpg",
+      "800": "assets/r/gallery-ridge-800.jpg"
+    }
+  },
+  "assets/hero-ridge.jpg": {
+    "width": 1672,
+    "variants": {
+      "480": "assets/r/hero-ridge-480.jpg",
+      "800": "assets/r/hero-ridge-800.jpg",
+      "1200": "assets/r/hero-ridge-1200.jpg"
+    }
+  },
+  "assets/journal/trail-clears-head.jpg": {
+    "width": 465,
+    "variants": {}
+  },
+  "assets/journal/weekend-escapes.jpg": {
+    "width": 467,
+    "variants": {}
+  },
+  "assets/products/crossbody-3l.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/crossbody-3l-480.jpg"
+    }
+  },
+  "assets/products/daypack-18l.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/daypack-18l-480.jpg"
+    }
+  },
+  "assets/products/explore-30l.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/explore-30l-480.jpg"
+    }
+  },
+  "assets/products/hip-pack-3l.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/hip-pack-3l-480.jpg"
+    }
+  },
+  "assets/products/pouch-2l.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/pouch-2l-480.jpg"
+    }
+  },
+  "assets/products/trailpro-45l.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/trailpro-45l-480.jpg"
+    }
+  },
+  "assets/products/urban-25l.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/urban-25l-480.jpg"
+    }
+  },
+  "assets/products/water-bottle.jpg": {
+    "width": 600,
+    "variants": {
+      "480": "assets/r/products/water-bottle-480.jpg"
+    }
+  },
+  "assets/promo-summit.jpg": {
+    "width": 1536,
+    "variants": {
+      "480": "assets/r/promo-summit-480.jpg",
+      "800": "assets/r/promo-summit-800.jpg",
+      "1200": "assets/r/promo-summit-1200.jpg"
+    }
+  }
+}

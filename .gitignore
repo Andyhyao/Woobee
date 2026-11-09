@@ -1,0 +1,21 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Dependencies, env, logs
+node_modules/
+.env*
+*.log
+
+# Local tooling (preview config, design-hook cache, browser automation)
+.claude/
+.impeccable/hook.cache.json
+.playwright-mcp/
+
+# Not part of this site: a separate client project
+megamenu/
+
+# Local symlink to a 100 MB source video outside the repo; host the film elsewhere
+assets/woobee-film.mp4
