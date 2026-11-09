@@ -369,27 +369,30 @@ if (journal) {
 // ---------- Footer ----------
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
+// Newsletter form (absent on pages that drop it, such as the 404 page)
 const newsletter = document.querySelector('.newsletter');
-const email = newsletter.querySelector('input[type="email"]');
-const msg = document.getElementById('newsletter-msg');
-newsletter.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const value = email.value.trim();
-  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  email.setAttribute('aria-invalid', String(!valid));
-  msg.classList.toggle('is-error', !valid);
-  if (!valid) {
-    msg.textContent = value ? 'Check the email address, it looks incomplete.' : 'Enter your email address to subscribe.';
-    email.focus();
-    return;
-  }
-  msg.textContent = `Thanks. We'll send the next one to ${value}.`;
-  newsletter.reset();
-});
-email.addEventListener('input', () => {
-  if (email.getAttribute('aria-invalid') === 'true') {
-    email.removeAttribute('aria-invalid');
-    msg.textContent = '';
-    msg.classList.remove('is-error');
-  }
-});
+if (newsletter) {
+  const email = newsletter.querySelector('input[type="email"]');
+  const msg = document.getElementById('newsletter-msg');
+  newsletter.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const value = email.value.trim();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    email.setAttribute('aria-invalid', String(!valid));
+    msg.classList.toggle('is-error', !valid);
+    if (!valid) {
+      msg.textContent = value ? 'Check the email address, it looks incomplete.' : 'Enter your email address to subscribe.';
+      email.focus();
+      return;
+    }
+    msg.textContent = `Thanks. We'll send the next one to ${value}.`;
+    newsletter.reset();
+  });
+  email.addEventListener('input', () => {
+    if (email.getAttribute('aria-invalid') === 'true') {
+      email.removeAttribute('aria-invalid');
+      msg.textContent = '';
+      msg.classList.remove('is-error');
+    }
+  });
+}

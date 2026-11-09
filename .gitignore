@@ -17,5 +17,6 @@ node_modules/
 # Not part of this site: a separate client project
 megamenu/
 
-# Local symlink to a 100 MB source video outside the repo; host the film elsewhere
-assets/woobee-film.mp4
+
+# Deploy folder: built by `node build.mjs --out dist` (Vercel runs this itself)
+dist/

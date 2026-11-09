@@ -1,10 +1,10 @@
 # Woobee site
 
-Static pages for the Woobee store: `index.html`, `shop.html`, `about.html` and `journal.html`. Styles live in `styles.css`, behaviour in `main.js`, images in `assets/`.
+Static pages for the Woobee store: `index.html`, `shop.html`, `about.html`, `journal.html` and a `404.html`. Styles live in `styles.css`, behaviour in `main.js`, images in `assets/`.
 
 ## Editing pages
 
-The four root `.html` files are **generated**. Edit the sources in `src/`, then rebuild:
+The root `.html` files are **generated**. Edit the sources in `src/`, then rebuild:
 
 ```bash
 node build.mjs
@@ -43,11 +43,13 @@ Each file in `src/pages/` starts with:
 ---
 title: Shop backpacks and bags — Woobee
 description: …
-nav: shop            # home | shop | about | journal — sets the active nav link
+nav: shop            # home | shop | about | journal | none — sets the active nav link
 film: true           # include the film dialog
 newsletter: true     # include the newsletter form in the footer
 ogImage: assets/og/shop.jpg       # social preview image (1200×630)
 ogImageAlt: …                     # its alt text
+noindex: true        # optional: keep the page out of search results
+rootRelative: true   # optional: /styles.css instead of styles.css, for pages served at any URL (404)
 ---
 ```
 
@@ -67,7 +69,7 @@ python3 tools/make-assets.py
 
 It needs Pillow (`pip install pillow`) and writes `favicon.ico`, `favicon.svg`, `apple-touch-icon.png` (from `assets/woobee-mark.svg`), `assets/og/*.jpg` (1200×630 previews) and `assets/r/` (smaller photo sizes plus `manifest.json`). Re-run it after adding or replacing a photo, then rebuild.
 
-The "Watch the film" dialog on Shop and About plays `assets/woobee-film.mp4`, which is git-ignored (it is a local link to a large source file). Host the final film elsewhere and point `src/partials/film.html` at it.
+The "Watch the film" dialog on Shop and About plays `assets/film/woobee-film.mp4` (1440×1080, H.264, about 6 MB, silent, loops) with `woobee-film-poster.jpg` as its poster. To swap it, export a web copy at 1080p or below (on a Mac: `avconvert -s source.mp4 -p PresetAppleM4V1080pHD -o film.m4v`), keep it under about 10 MB, and replace both files.
 
 ## Previewing
 
@@ -76,3 +78,22 @@ Serve the folder with any static server, for example:
 ```bash
 python3 -m http.server 4173
 ```
+
+## Deploying to Vercel
+
+The repo is ready to import as-is. `vercel.json` tells Vercel to run `node build.mjs --out dist` and serve `dist/`, so nothing needs to be built or committed by hand.
+
+1. Push the repo to GitHub, GitLab or Bitbucket.
+2. In Vercel: **Add New → Project**, import the repo. Leave the framework preset as **Other**; the build command and output folder come from `vercel.json`.
+3. Optional: under **Settings → Environment Variables**, set `SITE_URL` to your custom domain (for example `https://woobee.com`). Without it, production builds use the project's Vercel domain automatically.
+
+Or deploy from this folder with the Vercel CLI: `vercel` for a preview, `vercel --prod` for production. `.vercelignore` keeps local-only files out of the upload.
+
+To check the deploy folder locally:
+
+```bash
+node build.mjs --out dist
+python3 -m http.server 4174 --directory dist
+```
+
+`dist/` contains only what the browser needs: the pages, `styles.css`, `main.js`, favicons, `assets/` (minus build inputs), `robots.txt`, and `sitemap.xml` once a domain is known. The build warns about missing files and links to pages that don't exist yet; Vercel serves `404.html` for those. `vercel.json` also sets basic security headers, long caching for the hashed CSS/JS, and a week of caching for images (replace a photo under a new file name, or expect up to a week of stale copies).

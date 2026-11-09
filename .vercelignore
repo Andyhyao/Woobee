@@ -1,0 +1,7 @@
+# Not uploaded by `vercel` CLI deploys (Vercel builds dist/ itself from the rest)
+.DS_Store
+.claude/
+.impeccable/
+.playwright-mcp/
+megamenu/
+dist/

@@ -2,6 +2,8 @@
 // Builds the site pages (index, shop, about, journal) from src/.
 //   node build.mjs          build once
 //   node build.mjs --watch  rebuild on every change to src/, styles.css or main.js
+//   node build.mjs --out dist  write a clean deploy folder (pages + runtime files only,
+//                              robots.txt, sitemap.xml when SITE_URL is known); used by Vercel
 //
 // src/layout.html          page shell (head, sprite, header, footer, scripts)
 // src/pages/*.html         front matter + the page's <main> content
@@ -10,19 +12,30 @@
 //
 // Includes keep the indentation of the comment line. `<!-- include: name if flag -->`
 // is dropped when the page's front matter sets that flag to false.
-import { readFileSync, writeFileSync, readdirSync, watch } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, watch, cpSync, mkdirSync, rmSync, existsSync, lstatSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { join, basename } from 'node:path';
+import { join, basename, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('.', import.meta.url));
 // Production origin, e.g. https://woobee.my (no trailing slash). When set, pages get a canonical
 // link and og:url, and og:image becomes absolute (social sites need absolute image URLs).
-const SITE_URL = (process.env.SITE_URL || '').replace(/\/$/, '');
+// On Vercel it falls back to the project's production domain.
+const SITE_URL = (process.env.SITE_URL
+  || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '')
+).replace(/\/$/, '');
+const outFlag = process.argv.indexOf('--out');
+const OUT = outFlag > -1 ? resolve(ROOT, process.argv[outFlag + 1] || 'dist') : resolve(ROOT);
+const DEPLOY = OUT !== resolve(ROOT);
+if (DEPLOY && !OUT.startsWith(resolve(ROOT) + sep)) throw new Error(`--out must be a folder inside the project, got ${OUT}`);
+// Served as-is next to the pages in a deploy folder
+const RUNTIME_FILES = ['styles.css', 'main.js', 'favicon.ico', 'favicon.svg', 'apple-touch-icon.png'];
+// Inside assets/: build inputs and local-only files that never ship
+const SOURCE_ONLY = new Set(['assets/r/manifest.json', 'assets/woobee-mark.svg']);
 const SRC = join(ROOT, 'src');
 const read = (path) => readFileSync(path, 'utf8');
 
-const NAV = ['home', 'shop', 'about', 'journal'];
+const NAV = ['home', 'shop', 'about', 'journal'];  // a page may also use `nav: none`
 // Store currency. Prices in src/data/products.json are in this currency.
 const CURRENCY = { code: 'USD', format: (amount) => `US$${Number(amount).toFixed(2)}` };
 const SWATCHES = {
@@ -59,7 +72,7 @@ function parsePage(text, file) {
   for (const key of ['title', 'description', 'nav']) {
     if (!meta[key]) throw new Error(`${file}: front matter needs "${key}"`);
   }
-  if (!NAV.includes(meta.nav)) throw new Error(`${file}: nav must be one of ${NAV.join(', ')}`);
+  if (![...NAV, 'none'].includes(meta.nav)) throw new Error(`${file}: nav must be one of ${NAV.join(', ')} or none`);
   return { meta, content: text.slice(match[0].length).replace(/\n+$/, '') };
 }
 
@@ -78,6 +91,56 @@ function responsiveImages(html) {
     const srcset = [...Object.entries(entry.variants).map(([w, file]) => `${file} ${w}w`), `${src} ${entry.width}w`].join(', ');
     return `<img ${rest(before)}src="${src}" srcset="${srcset}" sizes="${sizes}"${rest(after)}>`;
   });
+}
+
+// Pages served at any depth (the 404 page) need root-relative URLs: /styles.css, not styles.css
+const isRelative = (url) => url && !/^(#|\/|[a-z][a-z0-9+.-]*:)/i.test(url);
+function rootRelative(html) {
+  return html
+    .replace(/\b(src|href|action|poster)="([^"]*)"/g, (m, attr, url) => (isRelative(url) ? `${attr}="/${url}"` : m))
+    .replace(/\bsrcset="([^"]*)"/g, (_, list) => `srcset="${list.split(',').map((part) => {
+      const [url, ...rest] = part.trim().split(/\s+/);
+      return [isRelative(url) ? `/${url}` : url, ...rest].join(' ');
+    }).join(', ')}"`);
+}
+
+// Copy what the browser needs, then report any local file a page points at that isn't there
+function writeDeployExtras(pages) {
+  for (const file of RUNTIME_FILES) cpSync(join(ROOT, file), join(OUT, file));
+  cpSync(join(ROOT, 'assets'), join(OUT, 'assets'), {
+    recursive: true,
+    filter: (src) => {
+      const rel = src.slice(resolve(ROOT).length + 1).split(sep).join('/');
+      return !SOURCE_ONLY.has(rel) && basename(src) !== '.DS_Store' && !lstatSync(src).isSymbolicLink();
+    },
+  });
+  const listed = pages.filter((f) => f !== '404.html');
+  writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n${SITE_URL ? `\nSitemap: ${SITE_URL}/sitemap.xml\n` : ''}`);
+  if (SITE_URL) {
+    const urls = listed.map((f) => `  <url><loc>${SITE_URL}${f === 'index.html' ? '/' : `/${f}`}</loc></url>`).join('\n');
+    writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
+  }
+
+  const missingFiles = new Map();
+  const missingPages = new Set();
+  for (const file of pages) {
+    const html = read(join(OUT, file));
+    const refs = [...html.matchAll(/\b(?:src|href|action|poster)="([^"#?]+)/g)].map((m) => m[1])
+      .concat([...html.matchAll(/\bsrcset="([^"]+)"/g)].flatMap((m) => m[1].split(',').map((p) => p.trim().split(/\s+/)[0])));
+    for (const ref of refs) {
+      if (/^[a-z][a-z0-9+.-]*:/i.test(ref)) continue;
+      const path = ref.replace(/^\//, '');
+      if (!path || existsSync(join(OUT, path))) continue;
+      if (/\.[a-z0-9]+$/i.test(path) && !path.endsWith('.html')) {
+        missingFiles.set(path, [...(missingFiles.get(path) || []), file]);
+      } else {
+        missingPages.add(`/${path}`);
+      }
+    }
+  }
+  for (const [path, from] of missingFiles) console.warn(`  ! missing file ${path} (used by ${[...new Set(from)].join(', ')})`);
+  if (missingPages.size) console.warn(`  ! ${missingPages.size} links point at pages that don't exist yet; Vercel serves 404.html for them`);
+  if (!SITE_URL) console.warn('  ! SITE_URL not set: no canonical links, og:url or sitemap.xml (set it, or deploy on Vercel)');
 }
 
 function fill(text, vars, source) {
@@ -172,6 +235,10 @@ function build() {
   }
 
   const pages = readdirSync(join(SRC, 'pages')).filter((f) => f.endsWith('.html'));
+  if (DEPLOY) {
+    rmSync(OUT, { recursive: true, force: true });
+    mkdirSync(OUT, { recursive: true });
+  }
   for (const file of pages) {
     const { meta, content } = parsePage(read(join(SRC, 'pages', file)), `pages/${file}`);
     const page = file === 'index.html' ? '/' : `/${file}`;
@@ -184,15 +251,19 @@ function build() {
       ogImage: SITE_URL ? `${SITE_URL}/${ogImage}` : ogImage,
       ogImageAlt: meta.ogImageAlt || meta.title,
       film: meta.film !== false,
+      noindex: meta.noindex === true,
       newsletter: meta.newsletter !== false,
       footerTopModifier: meta.newsletter === false ? ' footer__top--compact' : '',
     };
     for (const key of NAV) vars[`current.${key}`] = meta.nav === key ? ' aria-current="page"' : '';
     const shell = fill(layout.replace('{{content}}', '\u0000CONTENT\u0000'), vars, 'layout.html');
-    const html = responsiveImages(expand(shell.replace('\u0000CONTENT\u0000', () => content), vars));
-    writeFileSync(join(ROOT, file), `${html.replace(/\n+$/, '')}\n`);
+    let html = responsiveImages(expand(shell.replace('\u0000CONTENT\u0000', () => content), vars));
+    if (meta.rootRelative) html = rootRelative(html);
+    writeFileSync(join(OUT, file), `${html.replace(/\n+$/, '')}\n`);
   }
-  console.log(`Built ${pages.map((f) => basename(f, '.html')).join(', ')} in ${Date.now() - started} ms (css ${shared.cssVersion}, js ${shared.jsVersion})`);
+  if (DEPLOY) writeDeployExtras(pages);
+  const where = DEPLOY ? ` into ${OUT.slice(resolve(ROOT).length + 1)}/` : '';
+  console.log(`Built ${pages.map((f) => basename(f, '.html')).join(', ')}${where} in ${Date.now() - started} ms (css ${shared.cssVersion}, js ${shared.jsVersion})`);
 }
 
 function safeBuild() {

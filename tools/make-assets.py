@@ -100,7 +100,7 @@ def og_images():
 def responsive():
     out_root = ASSETS / 'r'
     manifest = {}
-    photos = [p for p in ASSETS.rglob('*.jpg') if out_root not in p.parents and 'og' not in p.parts]
+    photos = [p for p in ASSETS.rglob('*.jpg') if out_root not in p.parents and 'og' not in p.parts and 'film' not in p.parts]
     for photo in sorted(photos):
         rel = photo.relative_to(ROOT).as_posix()
         im = Image.open(photo).convert('RGB')
