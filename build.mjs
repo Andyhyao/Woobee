@@ -29,7 +29,7 @@ const OUT = outFlag > -1 ? resolve(ROOT, process.argv[outFlag + 1] || 'dist') : 
 const DEPLOY = OUT !== resolve(ROOT);
 if (DEPLOY && !OUT.startsWith(resolve(ROOT) + sep)) throw new Error(`--out must be a folder inside the project, got ${OUT}`);
 // Served as-is next to the pages in a deploy folder
-const RUNTIME_FILES = ['styles.css', 'main.js', 'favicon.ico', 'favicon.svg', 'apple-touch-icon.png', 'manifest.webmanifest'];
+const RUNTIME_FILES = ['styles.css', 'main.js', 'favicon.ico', 'favicon.svg', 'apple-touch-icon.png'];
 // Inside assets/: build inputs and local-only files that never ship
 const SOURCE_ONLY = new Set(['assets/r/manifest.json', 'assets/woobee-mark.svg']);
 const SRC = join(ROOT, 'src');
@@ -102,22 +102,6 @@ function rootRelative(html) {
       const [url, ...rest] = part.trim().split(/\s+/);
       return [isRelative(url) ? `/${url}` : url, ...rest].join(' ');
     }).join(', ')}"`);
-}
-
-// The service worker's cache name is a hash of every file it can serve, so any deploy that
-// changes a page, CSS, JS or image replaces the old cache instead of serving stale copies.
-function writeServiceWorker(pages, shared) {
-  const hash = createHash('sha1');
-  for (const file of pages) hash.update(read(join(OUT, file)));
-  for (const file of ['styles.css', 'main.js', 'manifest.webmanifest']) hash.update(read(join(ROOT, file)));
-  const walk = (dir) => readdirSync(dir, { withFileTypes: true }).forEach((entry) => {
-    const path = join(dir, entry.name);
-    if (entry.isDirectory()) walk(path);
-    else if (entry.isFile() && entry.name !== '.DS_Store') hash.update(`${path.slice(ROOT.length)}:${readFileSync(path).length}`);
-  });
-  walk(join(ROOT, 'assets'));
-  const vars = { ...shared, swVersion: hash.digest('hex').slice(0, 10) };
-  writeFileSync(join(OUT, 'sw.js'), fill(read(join(SRC, 'sw.js')), vars, 'sw.js'));
 }
 
 // Copy what the browser needs, then report any local file a page points at that isn't there
@@ -277,7 +261,6 @@ function build() {
     if (meta.rootRelative) html = rootRelative(html);
     writeFileSync(join(OUT, file), `${html.replace(/\n+$/, '')}\n`);
   }
-  writeServiceWorker(pages, shared);
   if (DEPLOY) writeDeployExtras(pages);
   const where = DEPLOY ? ` into ${OUT.slice(resolve(ROOT).length + 1)}/` : '';
   console.log(`Built ${pages.map((f) => basename(f, '.html')).join(', ')}${where} in ${Date.now() - started} ms (css ${shared.cssVersion}, js ${shared.jsVersion})`);

@@ -4,8 +4,7 @@
     python3 tools/make-assets.py
 
 Needs Pillow (pip install pillow). Writes:
-  favicon.ico, favicon.svg, apple-touch-icon.png,
-  assets/icons/icon-*.png                           from assets/woobee-mark.svg
+  favicon.ico, favicon.svg, apple-touch-icon.png   from assets/woobee-mark.svg
   assets/og/<page>.jpg                              1200x630 social preview images
   assets/r/<path>-<width>.jpg + assets/r/manifest.json
                                                     smaller copies for srcset; build.mjs reads the manifest
@@ -83,14 +82,7 @@ def favicons():
     (ROOT / 'favicon.svg').write_text(svg)
     icon(180, pad=.16).save(ROOT / 'apple-touch-icon.png', optimize=True)
     icon(64).save(ROOT / 'favicon.ico', sizes=[(16, 16), (32, 32), (48, 48)])
-    # Home-screen app icons for the web app manifest. "Maskable" keeps the mark inside the
-    # 80% safe zone so Android can crop it to a circle or squircle.
-    icons = ASSETS / 'icons'
-    icons.mkdir(exist_ok=True)
-    icon(192, pad=.16).save(icons / 'icon-192.png', optimize=True)
-    icon(512, pad=.16).save(icons / 'icon-512.png', optimize=True)
-    icon(512, pad=.26).save(icons / 'icon-maskable-512.png', optimize=True)
-    print('favicons: favicon.svg, favicon.ico, apple-touch-icon.png, assets/icons/*.png')
+    print('favicons: favicon.svg, favicon.ico, apple-touch-icon.png')
 
 
 def og_images():

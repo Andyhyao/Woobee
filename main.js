@@ -1,8 +1,3 @@
-// Installed web app: register the service worker (offline pages, faster repeat visits)
-if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-  window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(() => {}); });
-}
-
 // Mobile/secondary menu
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.getElementById('menu');
