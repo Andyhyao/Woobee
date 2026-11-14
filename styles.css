@@ -477,7 +477,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   display: flex; align-items: center;
 }
 .signoff__media { position: absolute; inset: 0; }
-.signoff__media img { width: 100%; height: 100%; object-fit: cover; object-position: 20% 50%; }
+/* 16:9 photo in a ~4.5:1 band: hold the crop on the hiker's cap and pack */
+.signoff__media img { width: 100%; height: 100%; object-fit: cover; object-position: 20% 37%; }
 /* Light photo scrim behind the centred lockup; the copy is ink, so the scrim is bone */
 .signoff__media::after {
   content: ""; position: absolute; inset: 0;

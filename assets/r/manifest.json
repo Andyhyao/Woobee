@@ -16,6 +16,14 @@
       "1600": "assets/r/banner-hiker-1600.jpg"
     }
   },
+  "assets/banner-sunset.jpg": {
+    "width": 1671,
+    "variants": {
+      "480": "assets/r/banner-sunset-480.jpg",
+      "800": "assets/r/banner-sunset-800.jpg",
+      "1200": "assets/r/banner-sunset-1200.jpg"
+    }
+  },
   "assets/detail-back-panel.jpg": {
     "width": 1044,
     "variants": {
