@@ -245,6 +245,11 @@ function build() {
     const ogImage = meta.ogImage || 'assets/og/home.jpg';
     const vars = {
       ...shared,
+      // Film dialog video; a page can swap it with filmSrc / filmPoster / filmWidth / filmHeight front matter
+      filmSrc: 'assets/film/woobee-film.mp4',
+      filmPoster: 'assets/film/woobee-film-poster.jpg',
+      filmWidth: '1440',
+      filmHeight: '1080',
       ...meta,
       siteUrl: SITE_URL,
       pageUrl: `${SITE_URL}${page}`,
