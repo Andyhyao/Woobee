@@ -7,15 +7,6 @@
     "width": 471,
     "variants": {}
   },
-  "assets/banner-hiker.jpg": {
-    "width": 2000,
-    "variants": {
-      "480": "assets/r/banner-hiker-480.jpg",
-      "800": "assets/r/banner-hiker-800.jpg",
-      "1200": "assets/r/banner-hiker-1200.jpg",
-      "1600": "assets/r/banner-hiker-1600.jpg"
-    }
-  },
   "assets/banner-sunset.jpg": {
     "width": 1671,
     "variants": {
