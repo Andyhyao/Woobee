@@ -69,7 +69,7 @@ python3 tools/make-assets.py
 
 It needs Pillow (`pip install pillow`) and writes `favicon.ico`, `favicon.svg`, `apple-touch-icon.png` (from `assets/woobee-mark.svg`), `assets/og/*.jpg` (1200×630 previews) and `assets/r/` (smaller photo sizes plus `manifest.json`). Re-run it after adding or replacing a photo, then rebuild.
 
-The "Watch the film" dialog on Shop and About plays `assets/film/woobee-film.mp4` (1440×1080, H.264, about 6 MB, silent, loops) with `woobee-film-poster.jpg` as its poster. To swap it, export a web copy at 1080p or below (on a Mac: `avconvert -s source.mp4 -p PresetAppleM4V1080pHD -o film.m4v`), keep it under about 10 MB, and replace both files.
+The "Watch the film" dialog on Shop and About plays `assets/film/shop-film.mp4` (1544×1080, H.264 at 4 Mbps with fast start, about 7 MB, silent, loops) with `shop-film-poster.jpg` (its first frame) as its poster. To swap it, re-encode the source to H.264 at 1080p or below, keep it under about 10 MB, and replace both files. If the size changes, update `filmWidth` and `filmHeight` in `build.mjs`. A page can play a different film by setting `filmSrc`, `filmPoster`, `filmWidth` and `filmHeight` in its front matter.
 
 ## Previewing
 
